@@ -42,11 +42,11 @@ if st.button('Submit'):
     suggestion_dictionary = response.choices[0].message.content
 
 
-    sd = json.loads(suggestion_dictionary["Output interesting words JSON"])
+    sd = json.loads(suggestion_dictionary, strict=False)
 
-    print('คำแปล: ' + sd["Translation"])
-    print("\nเพลงนี้เกี่ยวกับอะไร?: " + sd["Story"])
-    print (sd)
-    suggestion_df = pd.DataFrame.from_dict(sd)
+    st.write('คำแปล: ' + sd["Translation"])
+    st.write("\nเพลงนี้เกี่ยวกับอะไร?: " + sd["Story"])
+    print (sd['Output interesting words JSON'])
+    suggestion_df = pd.DataFrame.from_dict(sd['Output interesting words JSON'])
     print(suggestion_df)
     st.table(suggestion_df)
