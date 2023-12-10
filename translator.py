@@ -3,7 +3,6 @@ import openai
 import json
 import pandas as pd
 
-# Get the API key from the sidebar called OpenAI API key
 user_api_key = st.sidebar.text_input("OpenAI API key", type="password")
 
 client = openai.OpenAI(api_key=user_api_key)
@@ -28,7 +27,7 @@ st.markdown('Input the lyrics of your favorite singer. \n\
 user_input = st.text_area("Put your lyrics:", "Your lyrics here")
 
 
-# submit button after text input
+
 if st.button('Submit'):
     messages_so_far = [
         {"role": "system", "content": prompt},
@@ -38,7 +37,7 @@ if st.button('Submit'):
         model="gpt-3.5-turbo",
         messages=messages_so_far
     )
-    # Show the response from the AI in a box
+
     st.markdown('**AI response:**')
     suggestion_dictionary = response.choices[0].message.content
 
